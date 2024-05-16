@@ -2,7 +2,7 @@
 
 import pandas as pd
 import os
-
+import numpy as np
 
 def main():
     # Set the path to the sourcedata directory
