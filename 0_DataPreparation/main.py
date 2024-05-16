@@ -24,6 +24,11 @@ def main():
     # df to merge.csv in sourcedata_dir
     df.to_csv(os.path.join(sourcedata_dir, 'merge.csv'), index=False)
     
-
+    # create 6 new dataframes from merge.csv for all 6 group in the colums 'Warengruppe'
+    for i in range(1, 7):
+        df = pd.read_csv(os.path.join(sourcedata_dir, 'merge.csv'))
+        df = df[df['Warengruppe'] == i]
+        df.to_csv(os.path.join(sourcedata_dir, f'warengruppe_{i}.csv'), index=False)
+        
 if __name__ == '__main__':
     main()
