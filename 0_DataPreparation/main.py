@@ -21,6 +21,9 @@ def main():
     # print the first 5 rows of the dataframe
     print(df.head())
 
+    # df to merge.csv in sourcedata_dir
+    df.to_csv(os.path.join(sourcedata_dir, 'merge.csv'), index=False)
+    
 
 if __name__ == '__main__':
     main()
