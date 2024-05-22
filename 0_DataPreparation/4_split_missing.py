@@ -18,6 +18,9 @@ def main():
     #print the first 5 rows of the new csv
     print(missing.head())
 
+    # print numver of rows 
+    print('Number of rows with missing Wettercode:', len(missing))
+    print('Number of rows with Wettercode:', len(has_wettercode))
 
 if __name__ == '__main__':
     main()

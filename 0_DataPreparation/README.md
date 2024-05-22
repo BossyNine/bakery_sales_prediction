@@ -20,3 +20,6 @@ Räumt zuerst die Target-Dir auf und lässt danach alle Skripts laufen.
 4. Finden der Daten die fehlen
 	- split-off der Rows, die keinen Wettercode haben
 	- Skript `4_split_missing.py`
+5. Hinzufügen der Ferien- und Feiertage
+	- add 1.0 für Tage wenn Datum in ferien.csv und feiertag.csv
+	- Skript `5.1_add_FF_days.py`
