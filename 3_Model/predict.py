@@ -60,6 +60,14 @@ def main(data_path, model_path, target_name):
         print('Error predicting data: ', e)
         sys.exit(1)
 
+    #save predictions
+    try:
+        predictions.to_csv('predictions.csv')
+        print('Predictions saved')
+    
+    except Exception as e:
+        print('Unable to save predictions: ', e)
+        sys.exit(1)
 
 if __name__ == '__main__':
     if len(sys.argv) < 3 and len(sys.argv) > 4:
