@@ -1,20 +1,20 @@
-# load keras pretrained model and predict time series data
-
 import numpy as np
 import pandas as pd
 import sys
 import os
 from time import sleep
-
 # set logging level
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-
 from tensorflow import keras
 
-def main(data_path, model_path, target_name):
+def main(data_to_predict_path, encoded_path, model_path):
     # check if files exist
-    if not os.path.isfile(data_path):
-        print('Data file not found')
+    if not os.path.isfile(data_to_predict_path):
+        print('To predicted data file not found')
+        sys.exit(1)
+
+    if not os.path.isfile(encoded_path):
+        print('Library file not found')
         sys.exit(1)
 
     if not os.path.isfile(model_path):
@@ -23,13 +23,18 @@ def main(data_path, model_path, target_name):
 
     # load data
     try:
-        data = pd.read_csv(data_path)
-        target = data[target_name]
-        data = data.drop(columns=target_name)
-        print("Data loaded")
+        data = pd.read_csv(data_to_predict_path)
 
     except Exception as e:
         print('Error loading data: ', e)
+        sys.exit(1)
+    
+    # load library
+    try:
+        library = pd.read_csv(encoded_path)
+
+    except Exception as e:
+        print('Error loading library: ', e)
         sys.exit(1)
 
     # load model
@@ -44,40 +49,35 @@ def main(data_path, model_path, target_name):
         print('Error loading model: ', e)
         sys.exit(1)
 
+    data['id'] = data['id'].astype(float)
+    library['id'] = library['id'].astype(float)
+
+    # save rows of library with matching 'id' from data
+    data_pre = library[library['id'].isin(data['id'])]
+
     # convert and reshape data
-    data = np.array(data)
-    data = np.reshape(data, (data.shape[0], 1, data.shape[1]))
-    target = np.array(target)
-    target = np.reshape(target, (target.shape[0]))
+    data_pre = data_pre.drop(columns=['id'])
+    data_pre = np.array(data_pre)
+    data_pre = np.reshape(data_pre, (data_pre.shape[0], 1, data_pre.shape[1]))
 
     # predict
     try:
-        predictions = model.predict(data)
+        predictions = model.predict(data_pre)
         print('Predictions: ', predictions)
-        print('Targets: ', target)
 
     except Exception as e:
         print('Error predicting data: ', e)
         sys.exit(1)
-
-    #save predictions
-    try:
-        predictions.to_csv('predictions.csv')
-        print('Predictions saved')
     
-    except Exception as e:
-        print('Unable to save predictions: ', e)
-        sys.exit(1)
+    predictions = predictions.flatten()
+    # save predictions in sample_submission.csv in column 'Umsatz'
+    data['Umsatz'] = predictions
+    data.to_csv('sample_submission.csv', index=False)
+    print('Predictions saved')
+
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3 and len(sys.argv) > 4:
-        print('Usage: python predict.py <data_path> <model_path> <target>')
+    if len(sys.argv) < 4:
+        print('Usage: python predict.py <to_predict_path> <library_path> <model_path>')
         sys.exit(1)
-
-    data_path = sys.argv[1]
-    model_path = sys.argv[2]
-    if len(sys.argv) == 4:
-        target = sys.argv[3]
-    target = 'Umsatz'
-
-    main(data_path, model_path, target)
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
