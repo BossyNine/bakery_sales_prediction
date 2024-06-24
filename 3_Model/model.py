@@ -6,18 +6,27 @@ import sys
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout
+from tensorflow.keras.layers import Dense, LSTM, Dropout, Conv1D, MaxPool1D, Flatten
+from tensorflow.keras.callbacks import Callback
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
 # Const Parameters
 
-BATCH_SIZE = 8
-LEARNING_RATE = 0.005
-MOMENTUM = 0.3
-SEED = 123
-LOSS = 'mape'
+BATCH_SIZE = 16
+LEARNING_RATE = 0.0001
+MOMENTUM = 0.2
+SEED = 1337
+LOSS = 'mse'
 COLS_TO_DROP = ['Umsatz']
+
+# Define the custom callback
+class CustomCallback(Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        val_loss = logs.get('val_mape')
+        loss = logs.get('loss')
+        if val_loss is not None and val_loss < 25.0:
+            self.model.stop_training = True
 
 
 def main(input_path, output_path, epo=100):
@@ -29,6 +38,7 @@ def main(input_path, output_path, epo=100):
     # split data into features and target
     features = data.drop(columns=COLS_TO_DROP)
     target = data['Umsatz']
+    features = features.fillna(0.0)
 
     # split data into train and test
     features_train, features_test, target_train, target_test = train_test_split(features, target, test_size=0.2, random_state=SEED)
@@ -47,10 +57,16 @@ def main(input_path, output_path, epo=100):
     model = Sequential()
     
     model.add(tf.keras.layers.InputLayer(shape=(features_train_scaled.shape[1], features_train_scaled.shape[2])))
-    model.add(LSTM(features_train_scaled.shape[2], activation='relu', return_sequences=True))
-    model.add(Dropout(0.3))
-    model.add(LSTM(features_train_scaled.shape[2], activation='relu', return_sequences=False))
+   # model.add(Conv1D(filters=64, kernel_size=1, activation='relu'))
+   # model.add(LSTM(128, return_sequences=True))
+   # model.add(LSTM(64, return_sequences=False))
+   # model.add(Dropout(0.4))
     model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(0.4))
+    model.add(Dense(32, activation='relu'))
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.2))
     model.add(Dense(32, activation='relu'))
@@ -62,10 +78,12 @@ def main(input_path, output_path, epo=100):
     # compile model
     opta = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE)
     opts = tf.keras.optimizers.SGD(learning_rate=LEARNING_RATE, momentum=MOMENTUM)
-    model.compile(optimizer=opts, loss=LOSS)
+    model.compile(optimizer=opta, loss=LOSS, metrics=['mae', 'mape'])
 
+    # define callbacks
+    callbacks = CustomCallback()
     # fit model
-    history = model.fit(features_train_scaled, target_train, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_data=(features_test_scaled, target_test))
+    history = model.fit(features_train_scaled, target_train, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_data=(features_test_scaled, target_test), callbacks=[callbacks])
 
     # save model
     model.save(output_path)
