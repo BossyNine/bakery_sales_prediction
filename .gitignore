@@ -56,3 +56,5 @@ rsconnect/
 .direnv/
 shell.nix
 *.nix
+*.keras
+*.h5
