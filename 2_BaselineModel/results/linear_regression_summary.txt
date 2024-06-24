@@ -4,7 +4,7 @@ Dep. Variable:                 Umsatz   R-squared:                       0.869
 Model:                            OLS   Adj. R-squared:                  0.854
 Method:                 Least Squares   F-statistic:                     54.82
 Date:                Mon, 24 Jun 2024   Prob (F-statistic):               0.00
-Time:                        22:18:00   Log-Likelihood:                -50165.
+Time:                        22:33:32   Log-Likelihood:                -50165.
 No. Observations:                9334   AIC:                         1.024e+05
 Df Residuals:                    8322   BIC:                         1.096e+05
 Df Model:                        1011                                         
