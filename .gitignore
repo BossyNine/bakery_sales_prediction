@@ -52,3 +52,5 @@ rsconnect/
 .obsidian/
 
 
+*.keras
+*.h5
