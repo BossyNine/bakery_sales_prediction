@@ -64,7 +64,7 @@ These features are:
 
 This investigation delivered some useful insights into sales. Sales were in general higher during holidays. In addition, we created bar charts with confidence intervals for the different seasons. As expected, sales in spring and summer would perform better than in autumn and winter. However, rain does not have the expected impact on the average on sales. This might be due to the fact that people living in Kiel are used to rainy days. The evaluation on *Temperatur* seems to be inconclusive. Apparently, one goes shopping when there is a need regardless of the impact of *Temperatur*. However, this conclusion is negotiable.
 
-### Conclusion
+### 7 Conclusion
 These investigations indicated the complexity of the topic in general and specifically helped to clean data and ensure data quality. This process enabled the selection of the most relevant features and simplified the dataset. A better understanding of the data can lead to simpler models that are easier to interpret and faster to train.
 
 
