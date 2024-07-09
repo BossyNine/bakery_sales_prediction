@@ -1,44 +1,40 @@
 # Data Preparation
 
-## Vorgehen
+## General approach
 **run**  
 ``` 
 # ./run.sh
 ```
-Räumt zuerst die Target-Dir auf und lässt danach alle Skripts laufen.
+First, clean up the target directory and then run all scripts
 
-1.  Merge der Daten aus den vorgebenden Dateien
-	- Kiwo.csv, Wetter.csv und Umsatz.csv
-	- Join um alle Rows zu erhalten
-	- Skript `1_merge.py`
-2. Bereinigung der Daten
-	- Entfernen aller Daten ohne Umsatz
-	- Skript `2_remove.py`
-3. Leerstellen füllen ohne Informationsgewinn
-	- zeroing aller Rows ohne KiWo Daten
-	- Skript `3_fill_kiwo.py`
-4. Finden der Daten die fehlen
-	- split-off der Rows, die keinen Wettercode haben
-	- Skript `4_split_missing.py`
-5. Hinzufügen der Ferien- und Feiertage
-	- add 1.0 für Tage wenn Datum in ferien.csv und feiertag.csv
-	- Skript `5.1_add_FF_days.py`
-6. Hinzufügen von Wetterdaten und aufschlüsseln des Datums
-	- Wettercodes: 	- Wettercodes in Wetterklassen aggregieren (selbst logisch gewählt)
-					- split-off der rows mit Klassen mit zu wenig Datenpunkten (threshold 1%)
-	- add Niederschlagsmenge (external source)
-	- extract Wochentag und Jahreszeit aus Datum
-	- add Temperaturabweichung (positiv und negativ) vom Durchschnitt der vorangegangenen Woche
+1.  Merge data from the given files:
+	- Kiwo.csv, Wetter.csv, and Umsatz.csv
+	- Join to get all rows
+	- Script `1_merge.py`
+2. Data cleaning:
+	- Remove all data without sales
+	- Script `2_remove.py`
+3. Fill gaps without information gain:
+	- Zeroing all rows without *KiWo* data
+	- Script `3_fill_kiwo.py`
+4. Indentify missing data:
+	- Split off rows that have no *Wettercode*
+	- Script `4_split_missing.py`
+5. Add *Ferientage* and *Feiertage*:
+	- Add 1.0 for days when the data is in ferien.csv and/ or feiertag.csv
+	- Script `5.1_add_FF_days.py`
+6. Add weather data and break down the date:
+	- *Wettercodes*:
+		- Aggregate *Wettercodes* into *Wetterklassen* (logically chosen)  
+		- Split off rows with classes having too few data points (threshold 1 %)
+	- Add *Niederschlagsmenge* (external source)
+	- Extract *Wochentag* and *Jahreszeit* from *Datum*
+	- Add *Temperaturabweichung* (*positiv* and *negativ*) from *Durchschnitt der vorangegangenen Woche*
 	- Notebook  `6_weather_parameters.ipynb `
-
-7. Datensatz aufräumen und codieren
-	- delete unwanted columns
+7. Clean and encode dataset:
+	- Delete unwanted columns  
 	  Notebook  `7_data_transformation.ipynb `
-	- One-Hot encoding für alle kategoriellen Variablen
+	- One-Hot encoding for all categorical variables  
 	  Notebook  `8_encoded_variables `
-	- Split in Training, Validierung (und Testdaten)
+	- Split into training, validation (and test data)  
 	  Notebook  `9_preparation_for_model.ipynb `
-
-
-
-**was bisher zu kurz kommt: handling missing values! und data cleaning**
