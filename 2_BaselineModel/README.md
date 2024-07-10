@@ -39,10 +39,10 @@ Removing *Temperatur* has led to a significant decrease in model performance, in
 5. Fifth run - Taking *Wetterklasse* out of the solution  
 Removing *Wetterklasse* has led to a slight decrease in model performance, indicating that *Wetterklasse* contributes to the predictive power of the model. Based on these observations, *Wetterklasse* should be kept in the model to maintain better predictive accuracy.
 
-6. Sixth run - Taking *Bewoelkung* out of the solution
+6. Sixth run - Taking *Bewoelkung* out of the solution  
 Removing *Bewoelkung* has led to a slight decrease in model performance, indicating that *Bewoelkung* contributes to the predictive power of the model, although not significantly. Hence, *Bewoelkung* should be kept in the model to maintain better predictive accuracy.
 
-7. Seventh run - Taking *Windgeschwindigkeit* out of the solution  
+7. Seventh run - Taking *Windgeschwindigkeit* out of the solution    
 Removing *Windgeschwindigkeit* has led to a slight decrease in model performance, indicating that *Windgeschwindigkeit* contributes to the predictive power of the model, although not significantly. Therefore, *Windgeschwindigkeit* should be kept in the model to maintain better predictive accuracy.
 
 8. Eighth run - Including *Niederschlag* in the solution
