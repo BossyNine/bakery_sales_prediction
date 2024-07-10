@@ -51,7 +51,7 @@ Cross-validated R2 scores: [0.7297873 , 0.6889417 , 0.65568813, 0.59231637, 0.61
 Mean R2 score: 0.6566591945000697  
 R2 score: 0.6954848698278695  
 
-Including *Niederschlag* has resulted in a slight improvement in the Mean R2 score, indicating that it might have some predictive power. Apparently, including *Niederschlag* seems to add some value to the model. Therefore, it can be beneficial to include *Niederschlag* in the feature set.  
+Including *Niederschlag* has resulted in a slight improvement in the Mean R2 score, indicating that it might have some predictive power. Therefore, it can be beneficial to include *Niederschlag* in the feature set.  
 
 **Conclusion**   
 As an R2 score close to 0.7 is considered good, especially given the context of predictive modeling with real-world data, our model's performance metrics suggest it is reliable and effective for predicting *Umsatz*.
