@@ -92,8 +92,8 @@ Please find the according notebook containing the model code here:
 | Dep. Variable:             | *Umsatz*                                | R-squared:                 | 0.869                                   | 
 | Model:                     | **OLS**                                 | Adj. R-squared:            | 0.854                                   |
 | Method:                    | Least Squares                           | F-statistic:               | 54.82                                   |
-| Date:                      | Tue, 25 Jun 2024                        | Prob (F-statistic):**      | 0.00                                    |
-| Time:                      | 18:16:37                                | Log-Likelihood:**          | -50165.                                 |
+| Date:                      | Tue, 25 Jun 2024                        | Prob (F-statistic):        | 0.00                                    |
+| Time:                      | 18:16:37                                | Log-Likelihood:            | -50165.                                 |
 | No. Observations:          | 9334                                    | AIC:                       | 1.024e+05                               |
 | Df Residuals:              | 8322                                    | BIC:                       | 1.096e+05                               |
 | Df Model:                  | 1011                                    |                            |                                         |
@@ -116,4 +116,4 @@ The result from a cross validation shows that the model seems to be robust and n
     Cross-Validation R-squared Scores: [0.7831129910709567, 0.8690670919135706, 0.856027214024433, 0.7263895318087165, 0.8454007611017007]
     Mean Cross-Validation R-squared: 0.8159995179838754
 
-We resume our baseline model is valid and significant and is a good start for the neural network implementation.
+We resume our baseline model is valid and significant, and is a good start for the neural network implementation.
