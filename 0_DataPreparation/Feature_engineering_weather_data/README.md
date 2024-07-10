@@ -1,17 +1,16 @@
-Script to create some new features based on weather data (from Pauline)
-Additionally precipitation data is used from weather statio in Kiel Holtenau
-Delete this folder as soon as the script is incorporated into the other folders!
-(Ich will nur gerade an den anderen Sachen nichts kaputt machen und steige auch noch nicht ganz durch!)
+## Script to Create New Features Based on Weather Data (Pauline)
 
-Edit (Jonna):
-Ultra cool, die Ideen und Wege zu den ganzen Variablen!
-Notizen, was übernommen oder noch angepasst werden sollte:
-- genial mit den Niederschlagsdaten! Die evtl noch mit den Wettercodes kombinieren? (also davon ablesen, was die Codes bedeuten? Und: könnten die Niederschlagsdaten auch die Wettercodes ersetzen, falls diese mal fehlt, aber alle anderen Daten da sind?)
-- die Codierung des Datums in Wochentage ist super! (vorher noch darauf achten, dass die Datumsspalte auch sicher im datetime Format ist)
-- die Idee mit den averages über mehrere Tage ist super, um Lücken zu füllen.
-- und auch, um besonders kalte oder besonders warme Tage rauszufiltern. Da ist einerseits eine 7-Tage average vielleicht gut, aber vielleicht auch länger? Also über 4 Wochen? Oder aber wie doll die Temperatur vom Monatsmittel, oder sogar Jahreszeitenmittel abweicht? Also Jahreszeiten sind auf jeden Fall auch ein gutes KRiterium
+Additionally, precipitation data is used from the weather station in Kiel Holtenau. Delete this folder as soon as the script is incorporated into the other folders! (I just don't want to break anything in the other sections, and I'm still figuring things out!)
 
-Nächste Schritte:
-- Recherchieren, ob die Wettercodes einer Niederschlagsmenge entsprechen
-- Kategorien ausdenken und ausprobieren, wonach die Wettercodes aufteilen in Klassen
-- dann die Regressions Gerade berechnen und mit Kategorien rumprobieren. Und auch den Zusammenhang zwischen den Kategorien/Variablen darstellen? Und die Wichtigkeit der einzelnen Variablen herausfinden.
+## Edit (Jonna): 
+### Ultra cool ideas and approaches for the various variables! Notes on what should be adopted or adjusted:
+
+- Brilliant use of precipitation data! Perhaps combine it with the weather codes? (i.e., interpreting what the codes mean? And: could the precipitation data replace the weather codes if they are missing, but all other data is available?)
+- The encoding of dates into weekdays is fantastic! (Make sure the date column is in datetime format beforehand)
+- The idea of using averages over several days is excellent for filling gaps.
+- It is also great for filtering out particularly cold or warm days. A 7-day average might be good, but perhaps a longer period, like 4 weeks, could be better? Or how much the temperature deviates from the monthly or even seasonal average? Seasons are definitely a good criterion.
+
+### Next Steps:
+1. Research if the weather codes correspond to a specific amount of precipitation.
+2. Think of and experiment with categories to classify the weather codes.
+3. Then calculate the regression line and experiment with categories. Also, represent the relationship between the categories/variables? And determine the importance of each variable.
