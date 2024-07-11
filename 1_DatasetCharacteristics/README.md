@@ -52,7 +52,7 @@ Konditorei has a moderate negative correlation with Brot, Broetchen, Croissant, 
 
 ### 5 DataAnalyse_Wetter.ipynb
 In this Jupyter notebook, we explored *Wetter* and other features like *Bewoelkung*, *Temperatur*, *Wetterklasse*, and *Windgeschwindigkeit* in detail. We generated scatter plots, bar charts, histograms to visualize their dependencies and interactions. In addition, we tried to figure out if there might be some correlation between *Temperatur* and *Umsatz*. Adding additional features helped which are described in more detail in the next Jupyter notebook.  
-In Chapter 0_DataPreparation/Feature_engineering_weather_data, first trials with different features for weather have already been explored in two Jupiter notebooks (exploring_weather_data.ipynb and feature_engineering_weather_data) at the beginning of the project and have been kept for the sake of completeness (**[Link](https://github.com/BossyNine/bakery_sales_prediction/blob/main/0_DataPreparation/Feature_engineering_weather_data/README.md)**).
+In the very beginning of the project, first trials with different features for weather have already been explored in a Jupiter notebook (exploring_weather_data.ipynb) and have been kept for the sake of completeness (**[Link](https://github.com/BossyNine/bakery_sales_prediction/blob/main/1_DatasetCharacteristics/exploting_weather_data.ipynb)**).
 
 ### 6 DataAnalyse4AdditionalFeatures.ipynb
 In this Jupyter notebook, we investigated additional features which might be worth being implemented.  
