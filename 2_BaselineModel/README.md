@@ -79,6 +79,8 @@ But: the used higher-order interactions made the output file really big. Bigger 
 
     New Formula: 'Temperatur * Niederschlag + Temperatur * C(Wettercode) + Temperatur * Bewoelkung + Temperatur * Windgeschwindigkeit + Temperatur * temp_dv + Niederschlag * C(Wettercode) + Niederschlag * Bewoelkung + Niederschlag * Windgeschwindigkeit + Niederschlag * temp_dv + C(Wettercode) * Bewoelkung + C(Wettercode) * Windgeschwindigkeit + C(Wettercode) * temp_dv + Bewoelkung * Windgeschwindigkeit + Bewoelkung * temp_dv + Windgeschwindigkeit * temp_dv + C(Warengruppe) * C(weekday) * C(month) + C(day_month) + C(year) + C(season) + C(Ferientage) + C(Feiertage) + C(KielerWoche)'
 
+    (Actually, the pickle file is still too large (126.92MB, and 100MB is max.). This is why we could not keep it within the repository.)
+
 #### 2.2 **Implementation**
 
 We implemented the linear regression model using OLS from statsmodels library.
