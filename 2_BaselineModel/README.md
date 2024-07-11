@@ -10,7 +10,7 @@ As our first trial conducting linear regression failed, we chose **Random Forest
 
 #### 1.2 **Implementation**
 
-We used several modules from the sklearn library to perform the modeling. Modeling turned out to be quite straight forward, and actually provided some insights in the significance and relationships of the selected features.  
+We used several modules from the sklearn library to perform the modelling. Modelling turned out to be quite straight forward, and actually provided some insights in the significance and relationships of the selected features.  
 
 Please find the according notebook containing the model code here: 
 "/workspaces/bakery_sales_prediction/2_BaselineModel/BaseLine_RandomForest.ipynb"
@@ -75,6 +75,9 @@ In the end, we used the following formula including the following features:
 
     Formula: 'Umsatz ~ Temperatur * Niederschlag * C(Wettercode) * Bewoelkung * Windgeschwindigkeit * temp_dv + C(Warengruppe) * C(weekday) * C(month) + C(day_month) + C(year) + C(season) + C(Ferientage) + C(Feiertage) + C(KielerWoche)'
 
+But: the used higher-order interactions made the output file really big. Bigger than git codespace allowed. So, we decided to choose a less complex approach and changed the higher-order interactions into pairwise interactions. Thus we keep the interactions as we want them to be and at the same time reduce the model size to a manageable size. (We had to change this after the presentation, because else we could not have saved the output file.) The new formula is:
+
+    New Formula: 'Temperatur * Niederschlag + Temperatur * C(Wettercode) + Temperatur * Bewoelkung + Temperatur * Windgeschwindigkeit + Temperatur * temp_dv + Niederschlag * C(Wettercode) + Niederschlag * Bewoelkung + Niederschlag * Windgeschwindigkeit + Niederschlag * temp_dv + C(Wettercode) * Bewoelkung + C(Wettercode) * Windgeschwindigkeit + C(Wettercode) * temp_dv + Bewoelkung * Windgeschwindigkeit + Bewoelkung * temp_dv + Windgeschwindigkeit * temp_dv + C(Warengruppe) * C(weekday) * C(month) + C(day_month) + C(year) + C(season) + C(Ferientage) + C(Feiertage) + C(KielerWoche)'
 
 #### 2.2 **Implementation**
 
@@ -89,31 +92,31 @@ Please find the according notebook containing the model code here:
 
 |**_OLS Regression Results_**|                                         |                            |                                         |
 |----------------------------|-----------------------------------------|----------------------------|-----------------------------------------|
-| Dep. Variable:             | *Umsatz*                                | R-squared:                 | 0.869                                   | 
-| Model:                     | **OLS**                                 | Adj. R-squared:            | 0.854                                   |
-| Method:                    | Least Squares                           | F-statistic:               | 54.82                                   |
-| Date:                      | Tue, 25 Jun 2024                        | Prob (F-statistic):        | 0.00                                    |
-| Time:                      | 18:16:37                                | Log-Likelihood:            | -50165.                                 |
+| Dep. Variable:             | *Umsatz*                                | R-squared:                 | 0.858                                   | 
+| Model:                     | **OLS**                                 | Adj. R-squared:            | 0.848                                   |
+| Method:                    | Least Squares                           | F-statistic:               | 83.68                                   |
+| Date:                      | Thu, 11 Jul 2024                        | Prob (F-statistic):        | 0.00                                    |
+| Time:                      | 19:22:08                                | Log-Likelihood:            | -50555.                                  |
 | No. Observations:          | 9334                                    | AIC:                       | 1.024e+05                               |
-| Df Residuals:              | 8322                                    | BIC:                       | 1.096e+05                               |
-| Df Model:                  | 1011                                    |                            |                                         |
+| Df Residuals:              | 8704                                    | BIC:                       | 1.069e+05                               |
+| Df Model:                  | 629                                     |                            |                                         |
 | Covariance Type:           | nonrobust                               |                            |                                         |
 
 
 R-squared:  
-The R-squared and Adjusted R-squared metrics indicate the proportion of variance in the dependent variable explained by the model. The R-squared of 0.869 means that 86.9% of the variance in "Umsatz" is explained by our model which we are very satisfied with. Adjusted R-squared accounts for the number of predictors and adjusts for the degrees of freedom and is very good as well with 0.854.
+The R-squared and Adjusted R-squared metrics indicate the proportion of variance in the dependent variable explained by the model. The R-squared of 0.858 means that 85.8% of the variance in "Umsatz" is explained by our model which we are very satisfied with. Adjusted R-squared accounts for the number of predictors and adjusts for the degrees of freedom and is very good as well with 0.848.
 
 F-statistic:  
 The F-statistic tests the overall significance of the model and the high value, together with a very low p-value (<< 0.05) (Prob (F-statistic) indicates that the model is statistically significant. It seems a bit strange that the p-value is 0.00 though.
 
 Coefficient Significance:  
 The t-values anf p-values of the individual coefficients suggest that some weather codes are less significant and some more. Mostly codes that have to do with snowfall or fog, so rather seldom weather phenomenons, have a lower f- and higher p-value and are therefore very weak predctors of our target variable.  
-Somehow the 'year' variable show very low p-values and thereby higher significance. That could be because of the inflation, that every year differs to the one before in the height of the sales. Holidays are very important for the forecast - *Ferientage* has a f-value of 14.146 and p-value 0.00 and *Feiertage* 9.227/0.00 and also the *Kieler Woche* identifies as an important event with  6.974/0.00. For the *Warengruppe* *Wochentag*, it can be observed that especially bread rolls (10.653/0.000), croissants (4.910/0.000), pastries (5.395/0.000), and cake (4.467/0.000) have high significance together at the weekend. *Warengruppe 2* (bredrolls) and *Warengruppe 3* (croissants) have significant values for the combination of *Warengruppe* and *Monat*. 
+Somehow the 'year' variable show very low p-values and thereby higher significance. That could be because of the inflation, that every year differs to the one before in the height of the sales. Holidays are very important for the forecast - *Ferientage* has a f-value of 14.146 and p-value 0.00 and *Feiertage* 9.227/0.00 and also the *Kieler Woche* identifies as an important event with  6.974/0.00. For the *Warengruppe* *Wochentag*, it can be observed that especially bread rolls (10.653/0.000), croissants (4.910/0.000), pastries (5.395/0.000), and cake (4.467/0.000) have high significance together at the weekend. *Warengruppe 2* (bredrolls) and *Warengruppe 3* (croissants) have significant values for the combination of *Warengruppe* and *Monat*.
 
 Cross validation:  
-The result from a cross validation shows that the model seems to be robust and not overfitted since the R-squared values from the validation are at similar values and not so much lower than the R-squared from the model. The mean cross-validation R-squared (0.816) is only 0.053 lower than the one of the model (0.869) which is very good.
+The result from a cross validation shows that the model seems to be robust and not overfitted since the R-squared values from the validation are at similar values and not so much lower than the R-squared from the model. The mean cross-validation R-squared (0.834) is only 0.024 lower than the one of the model (0.858) which is very good.
 
-    Cross-Validation R-squared Scores: [0.7831129910709567, 0.8690670919135706, 0.856027214024433, 0.7263895318087165, 0.8454007611017007]
-    Mean Cross-Validation R-squared: 0.8159995179838754
+    Cross-Validation R-squared Scores: [0.7878143744688535, 0.8655933544451836, 0.8853332229120104, 0.7577374982940728, 0.8733061040866518]
+    Mean Cross-Validation R-squared: 0.8339569108413544
 
 We resume our baseline model is valid and significant, and is a good start for the neural network implementation.
