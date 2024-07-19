@@ -14,15 +14,16 @@ Regression
 
 ### Results Summary
 
--   **Best Model:** [Name of the best-performing model]
+-   **Best Model:** [NN-Model V3]
 -   **Evaluation Metric:** MAPE
+-   **Info:** Older Cat Data
 -   **Result by Category** (Identifier):
-    -   **Bread** (1): [XX]%
-    -   **Rolls** (2): [XX]%
-    -   **Croissant** (3): [XX]%
-    -   **Confectionery** (4): [XX]%
-    -   **Cake** (5): [XX]%
-    -   **Seasonal Bread** (6): [XX]%
+    -   **Bread** (1): [24]%
+    -   **Rolls** (2): [26]%  
+    -   **Croissant** (3): [31]%
+    -   **Confectionery** (4): [28]%
+    -   **Cake** (5): [28]%
+    -   **Seasonal Bread** (6): [48]%
 
 ## Documentation
 
