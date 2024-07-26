@@ -32,6 +32,7 @@ COLS_TO_DROP = ['Umsatz']
 ```
 
 Tuning mostly consist of minimal changes to the learning rate and the batch size. Huges improvments from moving from mape to mse.
+Hyperparameter Tuning is still quite hard and mostly an expirience problem. Sticking to established values seems to work best.
 
 ## Evaluation and Optimizer
 
@@ -44,3 +45,4 @@ Tuning mostly consist of minimal changes to the learning rate and the batch size
 ```
 
 First SGD seems to produce better results, but in the end ADAM was better at optimizing the validation mape, which was just for sanity checking.
+The mape still was not exceedingly good for the different categories. And I could not conclude from what this problem stems.
