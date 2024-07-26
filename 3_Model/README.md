@@ -1,7 +1,7 @@
 # Model Definition and Evaluation
 
 ## Selected Model and Implementation
-The model is a simple NN with twi LSTM, two Dropout, three Dense and one Output Layer.
+The model is a simple NN with two LSTM, two Dropout, three Dense and one Output Layer.
 
 ```python
    model.add(tf.keras.layers.InputLayer(shape=(features_train_scaled.shape[1], features_train_scaled.shape[2])))
@@ -31,7 +31,7 @@ LOSS = 'mse'
 COLS_TO_DROP = ['Umsatz']
 ```
 
-Tuning mostly consist of minimal changes to the learning rate and the batch size. Huges improvments from moving from mape to mse.
+Tuning mostly consist of minimal changes to the learning rate and the batch size. Huges improvements from moving from mape to mse.
 Hyperparameter Tuning is still quite hard and mostly an expirience problem. Sticking to established values seems to work best.
 
 ## Evaluation and Optimizer
